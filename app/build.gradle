@@ -29,7 +29,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'sandbox.JsonConverter'
+    mainClass = 'sandbox.Main'
 }
 
 tasks.named('test') {

@@ -16,13 +16,8 @@ import javax.json.JsonStructure;
 import javax.json.JsonValue;
 
 public class JsonConverter {
-    public static void main(String[] args) throws IOException {
-        // String jsonPath = args[0];
-        String jsonPath = "src/main/resources/sample.json";
-        convertToCsv(jsonPath);
-    }
 
-    public static void convertToCsv(String jsonPath) throws IOException {
+    public static void convertToCsv(String jsonPath, String outputDir) throws IOException {
         String data = Files.readString(Paths.get(jsonPath));
 
         JsonReader jsonReader = Json.createReader(new StringReader(data));
@@ -37,8 +32,6 @@ public class JsonConverter {
         JsonArray documentsArray = documents.asJsonArray();
 
         int counter = 1;
-
-        String outputDir = "src/main/resources/";
 
         String senderBody = "\"" + counter + "\"," + "\"" + senderObj.getString("name") + "\"," + "\""
                 + senderObj.getString("division") + "\"";
