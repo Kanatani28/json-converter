@@ -41,25 +41,30 @@ public class JsonConverter3 {
         }
 
         public void makeSenderCsvFile() throws IOException {
-            JsonObject senderJsonObject = jsonObject.getJsonObject("sender");
-            String senderCsvString = createCsvLine(senderJsonObject);
+
+            JsonArray senderJsonArray = jsonObject.getJsonArray("sender");
+            String senderCsvString = "";
+            for (int i = 0; i < senderJsonArray.size(); i++) {
+                JsonObject senderJsonObj = (JsonObject) senderJsonArray.get(i);
+                senderCsvString += createCsvLine(senderJsonObj) + System.lineSeparator();
+            }
             createCsvFile(senderCsvString, "sender.csv", outputPath);
         }
 
         public void makeReceiverCsvFile() throws IOException {
-            JsonObject receiverJsonObject = jsonObject.getJsonObject("receiver");
-            String receiverCsvString = createCsvLine(receiverJsonObject);
+            JsonArray receiverJsonArray = jsonObject.getJsonArray("receiver");
+            String receiverCsvString = "";
+            for (int i = 0; i < receiverJsonArray.size(); i++) {
+                JsonObject receiverJsonObj = (JsonObject) receiverJsonArray.get(i);
+                receiverCsvString += createCsvLine(receiverJsonObj) + System.lineSeparator();
+            }
             createCsvFile(receiverCsvString, "receiver.csv", outputPath);
         }
 
         public void makeDocumentsCsvFile() throws IOException {
-            JsonArray documentsJsonArray = jsonObject.getJsonArray("documents");
-            String documentsCsvString = "";
-            for (int i = 0; i < documentsJsonArray.size(); i++) {
-                JsonObject documentJsonObject = (JsonObject) documentsJsonArray.get(i);
-                documentsCsvString += createCsvLine(documentJsonObject) + System.lineSeparator();
-            }
-            createCsvFile(documentsCsvString, "documents.csv", outputPath);
+            JsonObject documentsJsonObj = jsonObject.getJsonObject("documents");
+            String documentString = createCsvLine(documentsJsonObj);
+            createCsvFile(documentString, "documents.csv", outputPath);
         }
 
         private String createCsvLine(JsonObject jsonObject) {
