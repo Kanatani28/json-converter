@@ -27,30 +27,34 @@ public class JsonConverter {
         JsonValue receiver = json.getValue("/receiver");
         JsonValue documents = json.getValue("/documents");
 
-        JsonObject senderObj = sender.asJsonObject();
-        JsonObject receiverObj = receiver.asJsonObject();
-        JsonArray documentsArray = documents.asJsonArray();
+        JsonArray senderArray = sender.asJsonArray();
+        JsonArray receiverArray = receiver.asJsonArray();
+        JsonObject documentsObject = documents.asJsonObject();
 
         int counter = 1;
 
-        String senderBody = "\"" + counter + "\"," + "\"" + senderObj.getString("name") + "\"," + "\""
-                + senderObj.getString("division") + "\"";
-        Files.writeString(Paths.get(outputDir + "sender.csv"), senderBody);
-        counter++;
-
-        String receiverBody = "\"" + counter + "\"," + "\"" + receiverObj.getString("name") + "\"," + "\""
-                + receiverObj.getString("division") + "\"";
-        Files.writeString(Paths.get(outputDir + "receiver.csv"), receiverBody);
-
-        counter++;
-
-        String documentBody = "";
-        for (JsonValue document : documentsArray) {
-            JsonObject documentObj = document.asJsonObject();
-            documentBody += "\"" + counter + "\"," + "\"" + documentObj.getString("file_name") + "\"," + "\""
-                    + documentObj.getString("accepted_date") + "\"" + "\n";
+        String senderBody = "";
+        for (JsonValue senderVal : senderArray) {
+            JsonObject senderObj = senderVal.asJsonObject();
+            senderBody += "\"" + counter + "\"," + "\"" + senderObj.getString("name") + "\"," + "\""
+                    + senderObj.getString("division") + "\"" + "\n";
             counter++;
         }
+        Files.writeString(Paths.get(outputDir + "sender.csv"), senderBody);
+
+        String receiverBody = "";
+        for (JsonValue receiverVal : receiverArray) {
+            JsonObject receiverObj = receiverVal.asJsonObject();
+            receiverBody += "\"" + counter + "\"," + "\"" + receiverObj.getString("name") + "\"," + "\""
+                    + receiverObj.getString("division") + "\"" + "\n";
+            counter++;
+        }
+        Files.writeString(Paths.get(outputDir + "receiver.csv"), receiverBody);
+
+        String documentBody = "\"" + counter + "\"," + "\"" + documentsObject.getString("file_name") + "\"," + "\""
+                + documentsObject.getString("accepted_date") + "\"";
+        counter++;
+
         Files.writeString(Paths.get(outputDir + "documents.csv"), documentBody);
     }
 }
