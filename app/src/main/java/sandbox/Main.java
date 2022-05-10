@@ -10,9 +10,9 @@ public class Main {
 
         String outputDir = "src/main/resources/";
 
-        JsonConverter.convertToCsv(jsonPath1, outputDir);
-        // JsonConverter2.convertToCsv(jsonPath1, outputDir);  
-        // JsonConverter3.convertToCsv(jsonPath1, outputDir);  
-        // JsonConverter4.convertToCsv(jsonPath1, outputDir);  
+        JsonConverter.convertToCsv(jsonPath2, outputDir);
+        // JsonConverter2.convertToCsv(jsonPath2, outputDir);  
+        // JsonConverter3.convertToCsv(jsonPath2, outputDir);  
+        // JsonConverter4.convertToCsv(jsonPath2, outputDir);  
     }
 }
