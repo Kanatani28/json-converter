@@ -6,13 +6,15 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String jsonPath1 = "src/main/resources/sample.json";
         String jsonPath2 = "src/main/resources/sample2.json";
-        String jsonPath3 = "src/main/resources/sample3.json";
+        String[] jsonPath3 = {"src/main/resources/sample3/data1.json", "src/main/resources/sample3/data2.json"};
 
-        String outputDir = "src/main/resources/";
+        String outputDir = "src/main/resources/sample3/";
 
-        JsonConverter.convertToCsv(jsonPath1, outputDir);
-        // JsonConverter2.convertToCsv(jsonPath1, outputDir);  
-        // JsonConverter3.convertToCsv(jsonPath1, outputDir);  
-        // JsonConverter4.convertToCsv(jsonPath1, outputDir);  
+        for(String jsonPath: jsonPath3) {
+            JsonConverter.convertToCsv(jsonPath, outputDir);
+            // JsonConverter2.convertToCsv(jsonPath, outputDir);  
+            // JsonConverter3.convertToCsv(jsonPath, outputDir);  
+            // JsonConverter4.convertToCsv(jsonPath, outputDir);  
+        }
     }
 }

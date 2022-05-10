@@ -1,0 +1,20 @@
+{
+    "sender": {
+        "name": "John2",
+        "division": "sales"
+    },
+    "receiver": {
+        "name": "Mary2",
+        "division": "accounting"
+    },
+    "documents": [
+        {
+            "file_name": "foo2.pdf",
+            "accepted_date": "20220321"
+        },
+        {
+            "file_name": "bar2.pdf",
+            "accepted_date": "20220325"
+        }
+    ]
+}
